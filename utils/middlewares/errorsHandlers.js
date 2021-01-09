@@ -8,7 +8,7 @@ function logErrors(err, req, res, next){
 function clientErrorHandler(err, req, res, next){
     // catch error for ajax request
     if(req.xhr){
-        res.status(500).json( { err:err } )
+        res.status(500).json( { err:err.message } )
     } else {
         next(err)
     }
@@ -16,15 +16,15 @@ function clientErrorHandler(err, req, res, next){
 
 function errorHandler(err, req, res, next){
     // Catch error while streaming
-    if ( res.headersSent ){
-        next(err)
+    if (res.headersSent) {
+        next(err);
     }
 
-    if(!config.dev){
-        delete err.stack
+    if (!config.dev) {
+        delete err.stack;
     }
 
-    res.status(res.status || 500);
+    res.status(err.status || 500);
     res.render("error", { error: err });
 }
 

@@ -13,7 +13,8 @@ const {
 const app = express();
 
 // middlewares
-app.use(bodyParser.json());
+/* app.use(bodyParser.json()); */
+app.use(express.json())
 
 // static files
 app.use("/static", express.static(path.join(__dirname, "public")));
