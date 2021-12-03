@@ -12,6 +12,7 @@ const {
 // app
 const app = express();
 
+console.log('New changes')
 // middlewares
 /* app.use(bodyParser.json()); */
 app.use(express.json())
